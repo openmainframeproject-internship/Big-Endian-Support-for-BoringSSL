@@ -1,0 +1,58 @@
+.\" icainfo man page source
+.\"
+.\" use
+.\"   groff -man -Tutf8 icainfo.1
+.\" or
+.\"   nroff -man icainfo.1
+.\" to process this source
+.\"
+.TH ICAINFO 1 2018-03-07 IBM "icainfo user manual"
+.SH NAME
+icainfo \- print information about cryptographic functions supported by libica
+.SH SYNOPSIS
+.B icainfo
+[-v | --version] [-h | --help]
+.SH DESCRIPTION
+.B icainfo
+prints a table that shows libica's support for various cryptographic
+algorithms and information about FIPS support.
+
+The icainfo output also indicates, whether it is in an error state.
+Algorithms that are not FIPS approved are marked as blocked in both table
+columns when running in FIPS mode. All algorithms are marked as blocked when
+libica is in an error state.
+
+A shortened sample output is given below:
+.P
+.nf
+      Cryptographic algorithm support
+-------------------------------------------
+ function      | # hardware | # software
+---------------+------------+--------------
+         SHA-1 |    yes     |     yes
+       SHA-224 |    yes     |     yes
+       SHA-256 |    yes     |     yes
+       SHA-384 |    yes     |     yes
+       SHA-512 |    yes     |     yes
+         GHASH |    yes     |      no
+         P_RNG |  blocked   |   blocked
+  DRBG-SHA-512 |    yes     |     yes
+        RSA ME |     no     |     yes
+       RSA CRT |     no     |     yes
+           ...
+-------------------------------------------
+Built-in FIPS support: FIPS mode active.
+.fi
+.SH OPTIONS
+.IP "-v or --version"
+show libica version and copyright
+.IP "-h or --help"
+display this help and exit
+.SH RETURN VALUE
+.IP 1
+unknown or invalid argument on invocation
+.IP 0
+successful program execution
+.SH "SEE ALSO"
+.BR icastats (1)
+
